@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { usePathname, useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import { useOrganization } from "@clerk/nextjs";
 import {
   Form,
   FormControl,
@@ -42,11 +42,15 @@ interface Props {
 function PostThread({userId}: {userId: string}){
     const router = useRouter();
     const pathname = usePathname();
+    const {organization} = useOrganization();
 
   
  
   const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
-      await createThread({text: values.thread, author: userId, communityId: null, path: pathname}); 
+     
+      
+      
+        await createThread({text: values.thread, author: userId, communityId: organization ? organization.id : null, path: pathname});
       router.push("/");
   }
     const form = useForm({
