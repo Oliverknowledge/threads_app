@@ -50,7 +50,7 @@ function ThreadCard({
           <div className='flex flex-col items-center'>
             <Link href={`/profile/${author.id}`} className='relative h-11 w-11'>
               <Image
-                src={community ? community?.image : author.image}
+                src={community?.image || author.image || '/default-image.svg'}
                 alt='user_community_image'
                 fill
                 className='cursor-pointer rounded-full'
