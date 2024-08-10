@@ -63,7 +63,7 @@ function ThreadCard({
           <div className='flex w-full flex-col'>
             <Link href={`/profile/${author.id}`} className='w-fit'>
               <h4 className='cursor-pointer text-base-semibold text-light-1'>
-                {author.name}
+                {community ? community?.name : author.name}
               </h4>
             </Link>
 
